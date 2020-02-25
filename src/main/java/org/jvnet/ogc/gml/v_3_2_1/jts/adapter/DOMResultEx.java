@@ -9,7 +9,7 @@ public class DOMResultEx extends DOMResult {
 
 	private final ValidationEventHandler validationEventHandler;
 
-	public DOMResultEx(ValidationEventHandler validationEventHandler) {
+	public DOMResultEx(final ValidationEventHandler validationEventHandler) {
 		super();
 		Validate.notNull(validationEventHandler);
 		this.validationEventHandler = validationEventHandler;

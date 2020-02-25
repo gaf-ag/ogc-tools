@@ -22,19 +22,19 @@ import javax.xml.validation.Schema;
 import net.opengis.gml.v_3_2_1.AbstractGeometryType;
 
 import org.jvnet.jaxb2_commons.locator.DefaultRootObjectLocator;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConverterInterface;
+import org.locationtech.jts.geom.Geometry;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 
-import com.vividsolutions.jts.geom.Geometry;
 
 public class UnmarshallerImpl implements javax.xml.bind.Unmarshaller {
 
 	private final javax.xml.bind.Unmarshaller unmarshaller;
 	private final GML321ToJTSConverterInterface<Object, Object, Geometry> converter;
 
-	public UnmarshallerImpl(
-			javax.xml.bind.Unmarshaller unmarshaller,
-			GML321ToJTSConverterInterface<Object, Object, Geometry> converter) {
+	public UnmarshallerImpl(final javax.xml.bind.Unmarshaller unmarshaller,
+			final GML321ToJTSConverterInterface<Object, Object, Geometry> converter) {
 		this.unmarshaller = unmarshaller;
 		this.converter = converter;
 	}
@@ -47,21 +47,20 @@ public class UnmarshallerImpl implements javax.xml.bind.Unmarshaller {
 		return converter;
 	}
 
-	protected Geometry convert(Object element) throws JAXBException {
+	protected Geometry convert(final Object element) throws JAXBException {
 
-		Object value = JAXBIntrospector.getValue(element);
+		final Object value = JAXBIntrospector.getValue(element);
 
 		try {
-			return getConverter().createGeometry(
-					new DefaultRootObjectLocator(value), (AbstractGeometryType) value);
+			return getConverter().createGeometry(new DefaultRootObjectLocator(value), value);
 		} catch (ConversionFailedException cfex) {
-			throw new JAXBException(
-					"Could not convert the geometry into a JAXB element.", cfex);
+			throw new JAXBException("Could not convert the geometry into a JAXB element.", cfex);
 		}
 	}
 
-	protected <T> JAXBElement<T> convert(Object element, Class<T> declaredType)
-			throws JAXBException {
+	protected <T> JAXBElement<T> convert(final Object element,
+			final Class<T> declaredType) throws JAXBException {
+
 		if (element == null) {
 			return null;
 		}

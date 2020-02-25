@@ -1,33 +1,38 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts.tests;
 
-import java.io.IOException;
+import junit.framework.Assert;
+import org.junit.Test;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.io.WKTWriter;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-
-import org.junit.Test;
-
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.io.WKTWriter;
+import java.io.StringWriter;
 
 public class DemoTest {
 
 	@Test
-	public void demonstrateContext() throws JAXBException, IOException
-	{
-		JAXBContext context = JAXBContext.newInstance("org.jvnet.ogc.gml.v_3_2_1.jts");
-		WKTWriter wktWriter = new WKTWriter();
+	public void demonstrateContext() throws JAXBException {
+
+		final JAXBContext context = JAXBContext.newInstance("org.jvnet.ogc.gml.v_3_2_1.jts");
+		final WKTWriter wktWriter = new WKTWriter();
 		
 		// Unmarshal
-		Point point = (Point) context.createUnmarshaller().unmarshal(getClass().getResource("Point[0].xml"));
+		Point point = (Point) context.createUnmarshaller().unmarshal(
+				getClass().getResource("Point1.xml"));
 		
-		Polygon polygon = (Polygon) context.createUnmarshaller().unmarshal(getClass().getResource("Polygon[0].xml"));
+		Polygon polygon = (Polygon) context.createUnmarshaller().unmarshal(
+				getClass().getResource("Polygon1.xml"));
 		
 		// Marshal
-		context.createMarshaller().marshal(point, System.out);
-//		
-		System.out.println(wktWriter.write(point));
-		
+		StringWriter stringWriter = new StringWriter();
+		context.createMarshaller().marshal(point, stringWriter);
+		String pointGml = stringWriter.toString();
+		System.out.println("Point GML: " + pointGml);
+
+		String pointWkt = wktWriter.write(point);
+		Assert.assertEquals("POINT (17 4)", pointWkt);
+		System.out.println("Point WKT: " + pointWkt);
 	}
 }

@@ -113,7 +113,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new PointType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Point", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricPrimitive")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "Point",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractGeometricPrimitive"
+	)
 	public JAXBElement<PointType> createPoint(PointType value) {
 		return new JAXBElement<PointType>(_Point_QNAME, PointType.class, null,
 				value);
@@ -134,7 +138,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new LineStringType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "LineString", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Curve")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "LineString",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractCurve"
+			)
 	public JAXBElement<LineStringType> createLineString(LineStringType value) {
 		return new JAXBElement<LineStringType>(_LineString_QNAME,
 				LineStringType.class, null, value);
@@ -156,7 +164,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new LinearRingType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "LinearRing", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Ring")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "LinearRing",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractRingType"
+	)
 	public JAXBElement<LinearRingType> createLinearRing(LinearRingType value) {
 		return new JAXBElement<LinearRingType>(_LinearRing_QNAME,
 				LinearRingType.class, null, value);
@@ -201,7 +213,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new SurfacePropertyType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "Polygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_Surface")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "Polygon",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractSurface"
+	)
 	public JAXBElement<PolygonType> createPolygon(PolygonType value) {
 		return new JAXBElement<PolygonType>(_Polygon_QNAME, PolygonType.class,
 				null, value);
@@ -218,7 +234,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new MultiPointType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "MultiPoint", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricAggregate")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "MultiPoint",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractGeometricAggregate"
+	)
 	public JAXBElement<MultiPointType> createMultiPoint(MultiPointType value) {
 		return new JAXBElement<MultiPointType>(_MultiPoint_QNAME,
 				MultiPointType.class, null, value);
@@ -240,7 +260,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new MultiCurveType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "MultiLineString", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricAggregate")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "MultiLineString",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractGeometricAggregate"
+	)
 	public JAXBElement<MultiCurveType> createMultiLineString(
 			MultiCurveType value) {
 		return new JAXBElement<MultiCurveType>(_MultiLineString_QNAME,
@@ -267,7 +291,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new MultiSurfacePropertyType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "MultiPolygon", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricAggregate")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "MultiPolygon",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractGeometricAggregate"
+	)
 	public JAXBElement<MultiSurfaceType> createMultiPolygon(
 			MultiSurfaceType value) {
 		return new JAXBElement<MultiSurfaceType>(_MultiPolygon_QNAME,
@@ -286,7 +314,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new MultiGeometryType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "MultiGeometry", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GeometricAggregate")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "MultiGeometry",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "AbstractGeometricAggregate"
+	)
 	public JAXBElement<MultiGeometryType> createMultiGeometry(
 			MultiGeometryType value) {
 		return new JAXBElement<MultiGeometryType>(_MultiGeometry_QNAME,
@@ -309,7 +341,11 @@ public class ObjectFactory implements ObjectFactoryInterface {
 		return new GeometryPropertyType();
 	}
 
-	@XmlElementDecl(namespace = "http://www.opengis.net/gml", name = "_Geometry", substitutionHeadNamespace = "http://www.opengis.net/gml", substitutionHeadName = "_GML")
+	@XmlElementDecl(namespace = "http://www.opengis.net/gml",
+			name = "_Geometry",
+			substitutionHeadNamespace = "http://www.opengis.net/gml"
+			//,substitutionHeadName = "_GML"
+	)
 	public JAXBElement<AbstractGeometryType> createGeometry(
 			AbstractGeometryType value) {
 		return new JAXBElement<AbstractGeometryType>(_Geometry_QNAME,

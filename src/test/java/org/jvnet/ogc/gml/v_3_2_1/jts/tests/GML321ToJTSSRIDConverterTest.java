@@ -1,34 +1,29 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts.tests;
 
-import junit.framework.TestCase;
 import net.opengis.gml.v_3_2_1.PointType;
-
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.jvnet.jaxb2_commons.locator.DefaultRootObjectLocator;
 import org.jvnet.ogc.gml.v_3_2_1.jts.ConversionFailedException;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSConstants;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSSRIDConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConstants;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSSRIDConverterInterface;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
+import static org.junit.Assert.assertEquals;
 
-public class GML321ToJTSSRIDConverterTest extends TestCase {
 
-	String[][] examples = { {
-			"http://www.opengis.net/gml/srs/epsg.xml#63266405", "63266405" } };
-
-	String[] counterexamples = {
-
-	};
+public class GML321ToJTSSRIDConverterTest {
 
 	private GeometryFactory geometryFactory;
 	private GML321ToJTSSRIDConverterInterface converter;
 
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		geometryFactory = GML321ToJTSConstants.DEFAULT_GEOMETRY_FACTORY;
 		converter = GML321ToJTSConstants.DEFAULT_SRID_CONVERTER;
-
 	}
 
 	private void check(String srsName, int srid, Object userData)
@@ -41,6 +36,7 @@ public class GML321ToJTSSRIDConverterTest extends TestCase {
 		assertEquals(target.getUserData(), userData);
 	}
 
+	@Test
 	public void testConvert() throws ConversionFailedException {
 		check("http://www.opengis.net/gml/srs/epsg.xml#4326", 4326,
 				"http://www.opengis.net/gml/srs/epsg.xml#4326");
@@ -54,6 +50,7 @@ public class GML321ToJTSSRIDConverterTest extends TestCase {
 				"urn:x-ogc:def:crs:EPSG:6.3:4326");
 	}
 
+	@Test
 	public void testConvertWithCorrectPoint() throws ConversionFailedException {
 
 		Geometry point = geometryFactory.createPoint(new Coordinate(0, 0));
@@ -68,6 +65,7 @@ public class GML321ToJTSSRIDConverterTest extends TestCase {
 
 	}
 
+	@Test
 	public void testConvertWithWrongFormatAndTargetUserDataNull()
 			throws ConversionFailedException {
 		Geometry point = geometryFactory.createPoint(new Coordinate(0, 0));
@@ -81,6 +79,7 @@ public class GML321ToJTSSRIDConverterTest extends TestCase {
 
 	}
 
+	@Test
 	public void testConvertWithWrongFormatAndTargetUserDataNotNull()
 			throws ConversionFailedException {
 		Geometry point = geometryFactory.createPoint(new Coordinate(0, 0));
@@ -92,9 +91,9 @@ public class GML321ToJTSSRIDConverterTest extends TestCase {
 		try {
 			converter.convert(new DefaultRootObjectLocator(source), source,
 					point);
-			fail();
+			Assert.fail();
 		} catch (ConversionFailedException e) {
-			assertTrue(true);
+			Assert.assertTrue(true);
 		}
 
 	}

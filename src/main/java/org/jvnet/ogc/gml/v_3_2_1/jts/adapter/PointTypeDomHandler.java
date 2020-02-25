@@ -1,10 +1,10 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts.adapter;
 
+import org.locationtech.jts.geom.Point;
+
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-
-import com.vividsolutions.jts.geom.Point;
 
 public class PointTypeDomHandler extends AbstractPointDomHandler {
 
@@ -12,21 +12,21 @@ public class PointTypeDomHandler extends AbstractPointDomHandler {
 		super();
 	}
 
-	public PointTypeDomHandler(Marshaller marshaller, Unmarshaller unmarshaller)
+	public PointTypeDomHandler(final Marshaller marshaller, final Unmarshaller unmarshaller)
 			throws JAXBException {
 		super(marshaller, unmarshaller);
 	}
 
-	public PointTypeDomHandler(Marshaller marshaller) throws JAXBException {
+	public PointTypeDomHandler(final Marshaller marshaller) throws JAXBException {
 		super(marshaller);
 	}
 
-	public PointTypeDomHandler(Unmarshaller unmarshaller) throws JAXBException {
+	public PointTypeDomHandler(final Unmarshaller unmarshaller) throws JAXBException {
 		super(unmarshaller);
 	}
 	
 	@Override
-	public Point getElement(DOMResultEx result) {
+	public Point getElement(final DOMResultEx result) {
 		return unmarshalGeometryType(result);
 	}
 

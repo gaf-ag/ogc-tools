@@ -1,38 +1,37 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts;
 
-import java.util.Map;
+import net.opengis.gml.v_3_2_1.GeometryPropertyType;
+import org.jvnet.ogc.gml.v_3_2_1.ObjectFactoryInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConstants;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSGeometryConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSSRIDConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321Constants;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321ConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321GeometryConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321SRSReferenceGroupConverterInterface;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import java.util.Map;
 
-import net.opengis.gml.v_3_2_1.AbstractGeometryType;
-import net.opengis.gml.v_3_2_1.GeometryPropertyType;
-
-import org.jvnet.ogc.gml.v_3_2_1.ObjectFactoryInterface;
-
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
 
 public class JAXBContextFactory {
 
-	public static final String PROPERTY_NAME_SRID_CONVERTER = GML321ToJTSSRIDConverterInterface.class
-			.getName();
-	public static final String PROPERTY_NAME_SRS_REFERENCE_GROUP_CONVERTER = JTSToGML321SRSReferenceGroupConverterInterface.class
-			.getName();
-	public static final String PROPERTY_NAME_OBJECT_FACTORY = ObjectFactoryInterface.class
-			.getName();
-	public static final String PROPERTY_NAME_GEOMETRY_FACTORY = GeometryFactory.class
-			.getName();
+	public static final String PROPERTY_NAME_SRID_CONVERTER = GML321ToJTSSRIDConverterInterface.class.getName();
+	public static final String PROPERTY_NAME_SRS_REFERENCE_GROUP_CONVERTER =
+			JTSToGML321SRSReferenceGroupConverterInterface.class.getName();
+	public static final String PROPERTY_NAME_OBJECT_FACTORY = ObjectFactoryInterface.class.getName();
+	public static final String PROPERTY_NAME_GEOMETRY_FACTORY = GeometryFactory.class.getName();
+	public static final String PROPERTY_NAME_CONTEXT_PATH = JAXBContextFactory.class.getName() + ".CONTEXT_PATH";
+	public static final String DEFAULT_CONTEXT_PATH =
+			net.opengis.gml.v_3_2_1.ObjectFactory.class.getPackage().getName();
 
-	public static final String PROPERTY_NAME_CONTEXT_PATH = JAXBContextFactory.class
-			.getName() + ".CONTEXT_PATH";
+	public static JAXBContext createContext(final String contextPath,
+			final ClassLoader classLoader, Map<String, Object> properties) throws JAXBException {
 
-	public static final String DEFAULT_CONTEXT_PATH = net.opengis.gml.v_3_2_1.ObjectFactory.class
-			.getPackage().getName();
-
-	public static JAXBContext createContext(String contextPath,
-			ClassLoader classLoader, Map<String, Object> properties)
-			throws JAXBException {
 		final String innerContextPath;
 
 		if (properties.containsKey(PROPERTY_NAME_CONTEXT_PATH)) {
@@ -40,8 +39,7 @@ public class JAXBContextFactory {
 		} else {
 			innerContextPath = DEFAULT_CONTEXT_PATH;
 		}
-		final JAXBContext context = JAXBContext.newInstance(innerContextPath,
-				classLoader, properties);
+		final JAXBContext context = JAXBContext.newInstance(innerContextPath, classLoader, properties);
 
 		final ObjectFactoryInterface objectFactory;
 		if (properties.containsKey(PROPERTY_NAME_OBJECT_FACTORY)) {
@@ -60,8 +58,8 @@ public class JAXBContextFactory {
 		} else {
 			srsReferenceGroupConverter = JTSToGML321Constants.DEFAULT_SRS_REFERENCE_GROUP_CONVERTER;
 		}
-		final JTSToGML321ConverterInterface<Object, GeometryPropertyType, Geometry> marshallerConverter = new JTSToGML321GeometryConverter(
-				objectFactory, srsReferenceGroupConverter);
+		final JTSToGML321ConverterInterface<Object, GeometryPropertyType, Geometry> marshallerConverter =
+				new JTSToGML321GeometryConverter(objectFactory, srsReferenceGroupConverter);
 
 		final GeometryFactory geometryFactory;
 		if (properties.containsKey(PROPERTY_NAME_GEOMETRY_FACTORY)) {
@@ -79,8 +77,8 @@ public class JAXBContextFactory {
 		} else {
 			sridConverter = GML321ToJTSConstants.DEFAULT_SRID_CONVERTER;
 		}
-		final GML321ToJTSConverterInterface<Object, Object, Geometry> unmarshallerConverter = new GML321ToJTSGeometryConverter(
-				geometryFactory, sridConverter);
+		final GML321ToJTSConverterInterface<Object, Object, Geometry> unmarshallerConverter =
+				new GML321ToJTSGeometryConverter(geometryFactory, sridConverter);
 		return new JAXBContextImpl(context, marshallerConverter,
 				unmarshallerConverter);
 	}

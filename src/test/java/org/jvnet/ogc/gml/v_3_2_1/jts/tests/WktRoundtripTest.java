@@ -1,37 +1,19 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts.tests;
 
-import static org.junit.Assert.assertTrue;
-
-import java.net.URL;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
-
-import net.opengis.gml.v_3_2_1.AbstractGeometryType;
 import net.opengis.gml.v_3_2_1.GeometryPropertyType;
 import net.opengis.gml.v_3_2_1.ObjectFactory;
-
 import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
-import org.jvnet.jaxb2_commons.locator.DefaultRootObjectLocator;
-import org.jvnet.ogc.gml.v_3_2_1.jts.ConversionFailedException;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSGeometryConverter;
 import org.jvnet.ogc.gml.v_3_2_1.jts.JAXBContextImpl;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321ConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321GeometryConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSGeometryConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321ConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321GeometryConverter;
+import org.locationtech.jts.geom.Geometry;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-import com.vividsolutions.jts.io.WKTReader;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 
-//@RunWith(Theories.class)
+// TODO
 public class WktRoundtripTest {
 
 	private static final double EPSILON = 0.1;

@@ -19,10 +19,11 @@ import javax.xml.validation.Schema;
 import net.opengis.gml.v_3_2_1.AbstractGeometryType;
 import net.opengis.gml.v_3_2_1.GeometryPropertyType;
 
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321ConverterInterface;
+import org.locationtech.jts.geom.Geometry;
 import org.w3c.dom.Node;
 import org.xml.sax.ContentHandler;
 
-import com.vividsolutions.jts.geom.Geometry;
 
 public class MarshallerImpl implements javax.xml.bind.Marshaller {
 
@@ -60,8 +61,8 @@ public class MarshallerImpl implements javax.xml.bind.Marshaller {
 
 		} else {
 			throw new JAXBException(
-					MessageFormat
-							.format("This marshaller can only marshal instances of [{0}]. Class of this object [{1}] is not an instance of [{0}].",
+					MessageFormat.format("This marshaller can only marshal instances of [{0}]. " +
+									"Class of this object [{1}] is not an instance of [{0}].",
 									Geometry.class, object.getClass()));
 		}
 	}

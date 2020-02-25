@@ -1,9 +1,20 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.net.URL;
+import net.opengis.gml.v_3_2_1.AbstractGeometryType;
+import net.opengis.gml.v_3_2_1.GeometryPropertyType;
+import net.opengis.gml.v_3_2_1.ObjectFactory;
+import org.junit.experimental.theories.DataPoints;
+import org.jvnet.jaxb2_commons.locator.DefaultRootObjectLocator;
+import org.jvnet.ogc.gml.v_3_2_1.jts.ConversionFailedException;
+import org.jvnet.ogc.gml.v_3_2_1.jts.JAXBContextImpl;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSGeometryConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321ConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321GeometryConverter;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -11,30 +22,13 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
+import java.net.URL;
+import java.text.ParseException;
 
-import net.opengis.gml.v_3_2_1.AbstractGeometryType;
-import net.opengis.gml.v_3_2_1.GeometryPropertyType;
-import net.opengis.gml.v_3_2_1.ObjectFactory;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
-import org.jvnet.jaxb2_commons.locator.DefaultRootObjectLocator;
-import org.jvnet.ogc.gml.v_3_2_1.jts.ConversionFailedException;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSGeometryConverter;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JAXBContextImpl;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321ConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321GeometryConverter;
-
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.PrecisionModel;
-import com.vividsolutions.jts.io.ParseException;
-
-//@RunWith(Theories.class)
+// TODO
 public class GeometryRoundtripTest {
 
 	private static final double EPSILON = 0.1;
@@ -60,16 +54,14 @@ public class GeometryRoundtripTest {
 
 	@DataPoints
 	public static Object[][] RESOURCES = new Object[][] {
-
-	{ "Point[4].xml", GEOMETRY_FACTORY.createPoint(new Coordinate(0, 1)) },
-	{ "Point[5].xml", GEOMETRY_FACTORY.createPoint(new Coordinate(0, 1)) }
-
+		{ "Point[4].xml", GEOMETRY_FACTORY.createPoint(new Coordinate(0, 1)) },
+		{ "Point[5].xml", GEOMETRY_FACTORY.createPoint(new Coordinate(0, 1)) }
 	};
 
-	/*
-	@Theory
+
 	public void roundtrip(Object[] item) throws JAXBException,
 			ConversionFailedException, ParseException {
+
 		final URL url = getClass().getResource((String) item[0]);
 		final Geometry alpha = (Geometry) JTS_CONTEXT.createUnmarshaller()
 				.unmarshal(url);
@@ -106,6 +98,5 @@ public class GeometryRoundtripTest {
 		assertTrue(alpha.equalsExact(omega, EPSILON));
 		assertEquals(alpha.getSRID(), omega.getSRID());
 	}
-	*/
 
 }

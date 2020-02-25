@@ -1,14 +1,12 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts.adapter.tests;
 
-import java.io.IOException;
+import org.junit.Test;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.stream.StreamSource;
-
-import org.junit.Assert;
-import org.junit.Test;
+import java.io.IOException;
 
 public class PropertyAdapterTest {
 

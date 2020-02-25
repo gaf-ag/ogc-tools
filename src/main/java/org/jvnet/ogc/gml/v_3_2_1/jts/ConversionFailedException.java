@@ -7,26 +7,27 @@ public class ConversionFailedException extends Exception {
 	private static final long serialVersionUID = 1L;
 	private final ObjectLocator locator;
 
-	public ConversionFailedException(ObjectLocator locator, String message) {
+	public ConversionFailedException(final ObjectLocator locator, final String message) {
 
 		super(message);
 		this.locator = locator;
 	}
 
-	public ConversionFailedException(ObjectLocator locator, Throwable throwable) {
+	public ConversionFailedException(final ObjectLocator locator, final Throwable throwable) {
 
 		super(throwable);
 		this.locator = locator;
 	}
 
-	public ConversionFailedException(ObjectLocator locator, String message,
-			Throwable throwable) {
+	public ConversionFailedException(final ObjectLocator locator,
+									 final String message,
+									 final Throwable throwable) {
 
 		super(message, throwable);
 		this.locator = locator;
 	}
 
-	public ConversionFailedException(ObjectLocator locator) {
+	public ConversionFailedException(final ObjectLocator locator) {
 		super();
 		this.locator = locator;
 	}

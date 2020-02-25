@@ -4,8 +4,8 @@ import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.jvnet.ogc.gml.v_3_2_1.jts.adapter.PointTypeDomHandler;
+import org.locationtech.jts.geom.Point;
 
-import com.vividsolutions.jts.geom.Point;
 
 @XmlRootElement(name = "a")
 public class A {

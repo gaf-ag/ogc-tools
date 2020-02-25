@@ -1,16 +1,16 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts;
 
+import net.opengis.gml.v_3_2_1.GeometryPropertyType;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321ConverterInterface;
+import org.locationtech.jts.geom.Geometry;
+
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.Validator;
 
-import net.opengis.gml.v_3_2_1.AbstractGeometryType;
-import net.opengis.gml.v_3_2_1.GeometryPropertyType;
 
-import com.vividsolutions.jts.geom.Geometry;
-
-@SuppressWarnings("deprecation")
 public class JAXBContextImpl extends javax.xml.bind.JAXBContext {
 
 	private final javax.xml.bind.JAXBContext context;

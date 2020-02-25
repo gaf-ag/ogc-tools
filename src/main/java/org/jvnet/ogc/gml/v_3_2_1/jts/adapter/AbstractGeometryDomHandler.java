@@ -18,20 +18,21 @@ import org.apache.commons.lang.Validate;
 import org.jvnet.jaxb2_commons.locator.DefaultRootObjectLocator;
 import org.jvnet.ogc.gml.v_3_2_1.ObjectFactoryInterface;
 import org.jvnet.ogc.gml.v_3_2_1.jts.ConversionFailedException;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSConstants;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSSRIDConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConstants;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSSRIDConverterInterface;
 import org.jvnet.ogc.gml.v_3_2_1.jts.JAXBContextFactory;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321Constants;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321ConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321SRSReferenceGroupConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321Constants;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321ConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321SRSReferenceGroupConverterInterface;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
+
 
 public abstract class AbstractGeometryDomHandler<G extends AbstractGeometryType, P, J extends Geometry>
 		implements DomHandler<J, DOMResultEx> {
@@ -130,6 +131,7 @@ public abstract class AbstractGeometryDomHandler<G extends AbstractGeometryType,
 
 	protected GML321ToJTSConverterInterface<G, P, J> createUnmarshallerConverter(
 			Unmarshaller unmarshaller) throws JAXBException {
+
 		GeometryFactory geometryFactory = GML321ToJTSConstants.DEFAULT_GEOMETRY_FACTORY;
 		try {
 			if (unmarshaller

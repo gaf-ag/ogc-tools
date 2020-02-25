@@ -8,17 +8,17 @@ import net.opengis.gml.v_3_2_1.PointPropertyType;
 import net.opengis.gml.v_3_2_1.PointType;
 
 import org.jvnet.ogc.gml.v_3_2_1.ObjectFactoryInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSCoordinateConverter;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSPointConverter;
-import org.jvnet.ogc.gml.v_3_2_1.jts.GML321ToJTSSRIDConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321ConverterInterface;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321CoordinateConverter;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321PointConverter;
-import org.jvnet.ogc.gml.v_3_2_1.jts.JTSToGML321SRSReferenceGroupConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSCoordinateConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSPointConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.gml2jts.GML321ToJTSSRIDConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321ConverterInterface;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321CoordinateConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321PointConverter;
+import org.jvnet.ogc.gml.v_3_2_1.jts.jts2gml.JTSToGML321SRSReferenceGroupConverterInterface;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Point;
 
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
 
 public abstract class AbstractPointDomHandler extends
 		AbstractGeometryDomHandler<PointType, PointPropertyType, Point> {
