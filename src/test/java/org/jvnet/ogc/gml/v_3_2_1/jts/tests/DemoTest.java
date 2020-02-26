@@ -1,6 +1,5 @@
 package org.jvnet.ogc.gml.v_3_2_1.jts.tests;
 
-import junit.framework.Assert;
 import org.junit.Test;
 import org.locationtech.jts.geom.Point;
 import org.locationtech.jts.geom.Polygon;
@@ -9,6 +8,8 @@ import org.locationtech.jts.io.WKTWriter;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.StringWriter;
+
+import static org.junit.Assert.assertEquals;
 
 public class DemoTest {
 
@@ -32,7 +33,7 @@ public class DemoTest {
 		System.out.println("Point GML: " + pointGml);
 
 		String pointWkt = wktWriter.write(point);
-		Assert.assertEquals("POINT (17 4)", pointWkt);
+		assertEquals("POINT (17 4)", pointWkt);
 		System.out.println("Point WKT: " + pointWkt);
 	}
 }
