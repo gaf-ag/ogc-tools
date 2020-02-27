@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:Point xmlns:gml="http://www.opengis.net/gml/3.2" id="id2" srsName="urn:ogc:def:crs:EPSG::25833">
+  <gml:pos>12345 67890</gml:pos>
+</gml:Point>
