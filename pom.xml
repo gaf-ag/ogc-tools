@@ -16,11 +16,6 @@
 	</properties> 
 	<dependencies>
 		<dependency>
-			<groupId>org.jvnet.jaxb2_commons</groupId>
-			<artifactId>jaxb2-basics-runtime</artifactId>
-			<version>${jaxb2-commons.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.jvnet.ogc</groupId>
 			<artifactId>gml-v_3_2_1-schema</artifactId>
 			<version>${ogc-schemas.version}</version>
