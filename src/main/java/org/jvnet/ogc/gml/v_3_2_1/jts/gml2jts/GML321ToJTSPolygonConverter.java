@@ -30,29 +30,25 @@ public class GML321ToJTSPolygonConverter extends
 	protected Polygon doCreateGeometry(ObjectLocator locator, PolygonType polygonType)
 			throws ConversionFailedException {
 		final LinearRing shell;
-		if (polygonType.isSetExterior()) {
-			final AbstractRingType abstractRingType = polygonType.getExterior().getAbstractRing().getValue();
-			if (abstractRingType instanceof LinearRingType) {
-				shell = linearRingConverter
-						.createGeometry(
-								locator.property("exterior",
-										polygonType.getExterior())
-										.property(
-												"value",
-												polygonType.getExterior().getAbstractRing().getValue())
-										.property(
-												"ring",
-												polygonType.getExterior().getAbstractRing().getValue())
-										.property("value", abstractRingType), (LinearRingType) abstractRingType); //$NON-NLS-1$
+		if (polygonType.isSetExterior() ) {
+			if (polygonType.getExterior().isSetAbstractRing()) {
+				final AbstractRingType abstractRingType =
+						polygonType.getExterior().getAbstractRing().getValue();
+				if (abstractRingType instanceof LinearRingType) {
+					shell = linearRingConverter.createGeometry(
+							locator.property("exterior", polygonType.getExterior())
+									.property("value", polygonType.getExterior().getAbstractRing().getValue())
+									.property("ring", polygonType.getExterior().getAbstractRing().getValue())
+									.property("value", abstractRingType), (LinearRingType) abstractRingType); //$NON-NLS-1$
+				} else {
+					throw new ConversionFailedException(
+							locator.property("exterior", polygonType.getExterior()).property("value",
+									polygonType.getExterior().getAbstractRing().getValue()).property("ring",
+									polygonType.getExterior().getAbstractRing().getValue()),
+							"Only linear rings are supported."); //$NON-NLS-1$
+				}
 			} else {
-				throw new ConversionFailedException(
-						locator.property("exterior", polygonType.getExterior())
-								.property("value",
-										polygonType.getExterior().getAbstractRing().getValue())
-								.property(
-										"ring",
-										polygonType.getExterior().getAbstractRing().getValue()),
-						"Only linear rings are supported."); //$NON-NLS-1$
+				throw new ConversionFailedException(locator.property("exterior", polygonType.getExterior()), "Linear Ring expected.");
 			}
 		} else {
 			shell = null;
