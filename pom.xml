@@ -7,13 +7,19 @@
 	<packaging>jar</packaging>
 	<name>OGC Tools GML-JTS Converter</name>
 	<properties>
-		<ogc-schemas.version>1.1.0</ogc-schemas.version>
-		<jts-core.version>1.16.1</jts-core.version>
 		<commons-lang.version>2.4</commons-lang.version>
+		<jaxb-api.version>2.3.1</jaxb-api.version>
 		<junit-jupiter.version>5.6.0</junit-jupiter.version>
 		<junit-vintage-engine.version>5.6.0</junit-vintage-engine.version>
+		<jts-core.version>1.16.1</jts-core.version>
+		<ogc-schemas.version>1.1.0</ogc-schemas.version>
 	</properties> 
 	<dependencies>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb-api.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.jvnet.ogc</groupId>
 			<artifactId>gml-v_3_2_1-schema</artifactId>
